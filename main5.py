@@ -19,7 +19,7 @@ if __name__ == "__main__":
     redis_host = os.environ["RAY_HEAD_SERVICE_HOST"]
     ray.init(address=redis_host + ":6379")
 
-    futures = [function.remote() for _ in range(36)]
+    futures = [function.remote() for _ in range(25)]
     print("before get futures", flush=True)
     ray.get(futures)
     print("after get futures", flush=True)
