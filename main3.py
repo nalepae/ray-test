@@ -20,6 +20,8 @@ if __name__ == "__main__":
     ray.init(address=redis_host + ":6379")
 
     futures = [function.remote() for _ in range(5)]
+    print("before get futures", flush=True)
     ray.get(futures)
+    print("after get futures", flush=True)
 
-    print("Finished")
+    print("Finished", flush=True)
