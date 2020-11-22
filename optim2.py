@@ -11,9 +11,9 @@ def to_optimize(x):
     return (x - 5) ** 2
 
 
-trials = MongoTrials("mongo://mongo:27017/hyperopt_db/jobs", exp_key="exp2")
+trials = MongoTrials("mongo://mongo:27017/hyperopt_db/jobs", exp_key="exp3")
 print("after trials")
 best = fmin(
-    fn=to_optimize, space=hp.uniform("x", 0, 10), algo=tpe.suggest, max_evals=20, trials=trials
+    fn=to_optimize, space=hp.uniform("x", 0, 10), algo=tpe.suggest, max_evals=100, trials=trials
 )
 print(best)
