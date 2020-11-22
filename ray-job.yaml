@@ -13,11 +13,11 @@ spec:
         - name: ray-head
           image: rayproject/autoscaler
           imagePullPolicy: Always
-          command: [ "/bin/bash", "-c", "--" ]
+          command: ["/bin/bash", "-c", "--"]
           args:
-            - "wget https://raw.githubusercontent.com/nalepae/ray-test/master/main5.py &&
+            - "wget https://raw.githubusercontent.com/nalepae/ray-test/master/tune_k8s.py &&
               ray start --node-ip-address=$MY_POD_IP --num-cpus=0 --address=$RAY_HEAD_SERVICE_HOST:$RAY_HEAD_SERVICE_PORT_REDIS_PRIMARY --object-manager-port=12345 --node-manager-port=12346 &&
-              python main5.py"
+              python tune_k8s.py"
             # - "wget https://raw.githubusercontent.com/ray-project/ray/master/doc/kubernetes/example.py &&
             #   ray start --node-ip-address=$MY_POD_IP --num-cpus=0 --address=$RAY_HEAD_SERVICE_HOST:$RAY_HEAD_SERVICE_PORT_REDIS_PRIMARY --object-manager-port=12345 --node-manager-port=12346 &&
             #   python example.py"

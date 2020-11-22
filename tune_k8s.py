@@ -4,6 +4,7 @@ from hyperopt import hp
 from ray import tune
 from ray.tune.integration.kubernetes import NamespacedKubernetesSyncer
 from ray.tune.suggest.hyperopt import HyperOptSearch
+from ray.tune import SyncConfig
 
 
 def to_optimize(config):
@@ -22,13 +23,10 @@ space = {
 }
 
 hyperopt_search = HyperOptSearch(space, metric="mean_accudracy", mode="min")
+sync_config = SyncConfig(sync_to_driver=NamespacedKubernetesSyncer("ray"))
 
 analysis = tune.run(
-    to_optimize,
-    num_samples=100,
-    search_alg=hyperopt_search,
-    verbose=0,
-    sync_to_driver=NamespacedKubernetesSyncer("ray"),
+    to_optimize, num_samples=100, search_alg=hyperopt_search, verbose=0, sync_config=sync_config,
 )
 
 print("Best config: ", analysis.get_best_config(metric="mean_accudracy", mode="min"))
