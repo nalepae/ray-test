@@ -8,7 +8,7 @@ from math import sin, log, cos
 def to_optimize(config):
     alpha, beta = config["alpha"], config["beta"]
 
-    for i in range(10 ** 7):
+    for i in range(5 * 10 ** 7):
         sin(cos(log(i + 1)))
 
     toto = 2.5 + (alpha - 3) ** 2 + (beta - 5) ** 2
